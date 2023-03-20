@@ -1,0 +1,20 @@
+i18n_title: firmware.listingtitle
+not_null_column: firmware.machine_model
+js_link: module/firmware/js/firmware
+table:
+  - column: machine.computer_name
+    i18n_header: listing.computername
+    formatter: clientDetail
+    tab_link: firmware_version-tab
+  - column: reportdata.serial_number
+    i18n_header: serial
+  - {i18n_header: username, column: reportdata.long_username}
+  - {i18n_header: os.version, column: machine.os_version, formatter: osVersion}
+  - {i18n_header: firmware.machine_model, column: firmware.machine_model}
+  - {i18n_header: firmware.boot_rom_version, column: firmware.boot_rom_version}
+  - {i18n_header: firmware.boot_rom_latest, column: firmware.boot_rom_latest}
+  - {i18n_header: firmware.boot_rom_outdated, column: firmware.boot_rom_outdated, formatter: firmware_outdated, filter: firmwareboot_rom_outdatedFilter}
+  - {i18n_header: firmware.hardware_model, column: firmware.hardware_model}
+  - {i18n_header: firmware.ibridge_version, column: firmware.ibridge_version}
+  - {i18n_header: firmware.ibridge_latest, column: firmware.ibridge_latest}
+  - {i18n_header: firmware.ibridge_outdated, column: firmware.ibridge_outdated, formatter: firmware_outdated, filter: firmwareibridge_outdatedFilter}

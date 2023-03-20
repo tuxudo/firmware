@@ -1,0 +1,99 @@
+#!/usr/local/munkireport/munkireport-python3
+
+import os
+import subprocess
+import sys
+import plistlib
+import platform
+
+
+def get_system_info():
+    '''Uses system profiler to get system info for this machine.'''
+    cmd = ['/usr/sbin/system_profiler', 'SPHardwareDataType', '-xml']
+    proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (output, unused_error) = proc.communicate()
+    try:
+        try:
+            plist = plistlib.readPlistFromString(output)
+        except AttributeError as e:
+            plist = plistlib.loads(output)
+        # system_profiler xml is an array
+        sp_dict = plist[0]
+        items = sp_dict['_items'][0]
+        return items
+    except Exception:
+        return {}
+
+def get_remotectl_data():
+
+    cmd = ['/usr/libexec/remotectl', 'dumpstate']
+    proc = subprocess.Popen(cmd, shell=False, bufsize=-1,
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    (output, unused_error) = proc.communicate()
+
+    out = {}
+
+    for item in output.decode("utf-8", errors="ignore").split('\n'):
+        if '      HWModel => ' in item:
+            out['hardware_model'] = remove_all('        HWModel => ', item).strip() # J413AP
+        elif '      BridgeVersion => ' in item:
+            out['ibridge_version'] = remove_all('       BridgeVersion => ', item.split(',')[0]).strip() # 19.16.16067.0.0
+        elif 'Found ncm-' in item:
+            # Break so that we don't get data on connected iOS devices, there is another module dedicated to that
+            break
+    return out
+    
+def flatten_info(obj):
+    '''Un-nest system info, return array with objects with relevant keys'''
+    out = {}
+
+    # for obj in array:
+    for item in obj:
+        if item == '_items':
+            out = out + flatten_info(obj['_items'])
+        elif item == 'boot_rom_version': # 7459.141.1 or 429.0.0.0.0 or 1916.80.2.0.0 (iBridge: 20.16.3045.0.0,0)
+            out['boot_rom_version'] = obj[item].split(' ')[0].strip()
+        elif item == 'machine_model':
+            out['machine_model'] = obj[item] # Mac14,2
+
+    return out
+
+def getOsVersion():
+    """Returns the Darwin version."""
+    # Catalina -> 10.15.7 -> 19.6.0 -> 19
+    darwin_version_tuple = platform.release().split('.')
+    return int(darwin_version_tuple[0]) 
+
+def merge_two_dicts(x, y):
+    z = x.copy()
+    z.update(y)
+    return z
+
+def main():
+    """Main"""
+    
+    # Get results
+    result = dict()
+    system_info = get_system_info()
+
+    # Check OS version and skip if too old
+    # Needs at least macOS Sierra (Darwin 16)   
+    if getOsVersion() > 15:
+        result = merge_two_dicts(flatten_info(system_info), get_remotectl_data())
+    else:
+        result = flatten_info(system_info)
+
+    # Write firmware results to cache
+    cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))
+    output_plist = os.path.join(cachedir, 'firmware.plist')
+    try:
+        plistlib.writePlist(result, output_plist)
+    except:
+        with open(output_plist, 'wb') as fp:
+            plistlib.dump(result, fp, fmt=plistlib.FMT_XML)
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,27 @@
+{
+    "title_admin": "Firmware Admin",
+    "listingtitle": "Firmware Report",
+    "firmware": "Firmware",
+    "recheck": "Process Firmware",
+    "last_cache_update": "Last Firmware Data Update",
+    "cache_source": "Firmware Data Source",
+    "update_cache_file": "Update Firmware Data",
+    "update_status": "Data Update Status",
+    "update_from_github": "Data Updated from GitHub",
+    "update_from_local": "Data Updated from Local File",
+
+    "machine_model": "Model ID",
+    "boot_rom_version": "Boot ROM Version",
+    "boot_rom_latest": "Latest Boot ROM Version",
+    "boot_rom_outdated": "Boot ROM Outdated",
+    "hardware_model": "iBridge Model",
+    "ibridge_version": "iBridge Version",
+    "ibridge_latest": "Latest iBridge Version",
+    "ibridge_outdated": "iBridge Outdated",
+
+    "never": "Never",
+    "local": "Local File",
+    "github": "GitHub",
+    "processing": "Processing",
+    "pull_in_all": "Process All Machines"
+}

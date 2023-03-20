@@ -1,0 +1,22 @@
+admin_pages:
+    admin:
+        view: firmware_admin
+        i18n: firmware.firmware
+client_tabs:
+    firmware_version-tab:
+        view: firmware_version_tab
+        i18n: firmware.firmware
+        badge: firmware-cnt
+listings:
+    firmware:
+        view: firmware_version_listing
+        i18n: firmware.firmware
+widgets:
+    firmware_boot_rom_outdated:
+        view: firmware_boot_rom_outdated_widget
+    firmware_ibridge_outdated:
+        view: firmware_ibridge_outdated_widget
+reports:
+    firmware_report:
+        view: firmware_report
+        i18n: firmware.listingtitle
