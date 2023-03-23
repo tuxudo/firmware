@@ -12,27 +12,27 @@
 					<th data-i18n="firmware.boot_rom_version"></th>
 					<td id="firmware-boot_rom_version"></td>
 				</tr>
-				<tr>
+				<tr id="firmware-boot_rom_latest-view" class="hide">
 					<th data-i18n="firmware.boot_rom_latest"></th>
 					<td id="firmware-boot_rom_latest"></td>
 				</tr>
-				<tr>
+				<tr id="firmware-boot_rom_outdated-view" class="hide">
 					<th data-i18n="firmware.boot_rom_outdated"></th>
 					<td id="firmware-boot_rom_outdated"></td>
 				</tr>
-				<tr>
+				<tr id="firmware-hardware_model-view" class="hide">
 					<th data-i18n="firmware.hardware_model"></th>
 					<td id="firmware-hardware_model"></td>
 				</tr>
-				<tr>
+				<tr id="firmware-ibridge_version-view" class="hide">
 					<th data-i18n="firmware.ibridge_version"></th>
 					<td id="firmware-ibridge_version"></td>
 				</tr>
-				<tr>
+				<tr id="firmware-ibridge_latest-view" class="hide">
 					<th data-i18n="firmware.ibridge_latest"></th>
 					<td id="firmware-ibridge_latest"></td>
 				</tr>
-				<tr>
+				<tr id="firmware-ibridge_outdated-view" class="hide">
 					<th data-i18n="firmware.ibridge_outdated"></th>
 					<td id="firmware-ibridge_outdated"></td>
 				</tr>
@@ -52,27 +52,47 @@ $(document).on('appReady', function(e, lang) {
 			$('#firmware-msg').text(i18n.t('no_data'));
 		} else {
 
-		// Hide
-		$('#firmware-msg').text('');
-		$('#firmware-view').removeClass('hide');
+			// Hide
+			$('#firmware-msg').text('');
+			$('#firmware-view').removeClass('hide');
 
-		// Add data
-		if (data.boot_rom_outdated == "1"){
-			$('#firmware-cnt').text("!").addClass('alert-danger');
-			$('#firmware-boot_rom_outdated').text(i18n.t('yes')).addClass('alert-danger');
-		}
-		if (data.ibridge_outdated == "1"){
-			$('#firmware-cnt').text("!").addClass('alert-danger');
-			$('#firmware-ibridge_outdated').text(i18n.t('yes')).addClass('alert-danger');
-		}
+			// Add data
+			if (data.boot_rom_outdated == "1"){
+				$('#firmware-cnt').text("!").addClass('alert-danger');
+				$('#firmware-boot_rom_outdated').text(i18n.t('yes')).addClass('alert-danger');
+			} else {
+				$('#firmware-boot_rom_outdated').text(i18n.t('no'));
+			}
+			if (data.ibridge_outdated == "1"){
+				$('#firmware-cnt').text("!").addClass('alert-danger');
+				$('#firmware-ibridge_outdated').text(i18n.t('yes')).addClass('alert-danger');
+			} else {
+				$('#firmware-ibridge_outdated').text(i18n.t('no'));
+			}
 
-		$('#firmware-machine_model').text(data.machine_model);
-		$('#firmware-boot_rom_version').text(data.boot_rom_version);
-		$('#firmware-boot_rom_latest').text(data.boot_rom_latest);
-		$('#firmware-hardware_model').text(data.hardware_model);
-		$('#firmware-ibridge_version').text(data.ibridge_version);
-		$('#firmware-ibridge_latest').text(data.ibridge_latest);
+			$('#firmware-machine_model').text(data.machine_model);
+			$('#firmware-boot_rom_version').text(data.boot_rom_version);
 
+			// Don't unhide blank rows
+			if (data.boot_rom_latest !== null){
+				$('#firmware-boot_rom_latest-view').removeClass('hide');
+				$('#firmware-boot_rom_outdated-view').removeClass('hide');
+				$('#firmware-boot_rom_latest').text(data.boot_rom_latest);
+			}
+			if (data.hardware_model !== null){
+				$('#firmware-hardware_model-view').removeClass('hide');
+				$('#firmware-hardware_model').text(data.hardware_model);
+			}
+			if (data.ibridge_version !== null){
+				$('#firmware-ibridge_version-view').removeClass('hide');
+				$('#firmware-ibridge_version').text(data.ibridge_version);
+			}
+			if (data.ibridge_latest !== null){
+				$('#firmware-ibridge_latest-view').removeClass('hide');
+				$('#firmware-ibridge_latest').text(data.ibridge_latest);
+				$('#firmware-ibridge_outdated-view').removeClass('hide');
+				$('#firmware-ibridge_outdated').text(data.ibridge_outdated);
+			}
 		}
 	});
 });
