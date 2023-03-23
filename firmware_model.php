@@ -157,8 +157,8 @@ class Firmware_model extends \Model
             $plist = $parser->toArray();
 
             $this->rs['machine_model'] = $plist['machine_model'];
-            if (array_key_exists('boot_rom_version', $data)) {
-                $this->rs['boot_rom_version'] = $data['boot_rom_version'];
+            if (array_key_exists('boot_rom_version', $plist)) {
+                $this->rs['boot_rom_version'] = $plist['boot_rom_version'];
             }
             if (array_key_exists('ibridge_version', $plist)) {
                 $this->rs['hardware_model'] = $plist['hardware_model'];
