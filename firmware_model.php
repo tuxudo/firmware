@@ -9,7 +9,7 @@ class Firmware_model extends \Model
     {
         parent::__construct('id', 'firmware'); // Primary key, tablename
         $this->rs['id'] = '';
-        $this->rs['serial_number'] = $serial;;
+        $this->rs['serial_number'] = $serial;
         $this->rs['machine_model'] = null; # Mac14,2
         $this->rs['boot_rom_version'] = null; # 7459.141.1 or 429.0.0.0.0
         $this->rs['boot_rom_latest'] = null; # 7459.141.1 or 429.0.0.0.0

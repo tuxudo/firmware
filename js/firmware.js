@@ -26,11 +26,9 @@ var firmwareibridge_outdatedFilter = function(colNumber, d){
 }
 
 var firmware_outdated = function(colNumber, row){
-console.log("HRER")
     var col = $('td:eq('+colNumber+')', row),
         colvar = col.text();
 
-console.log(colvar)
     colvar = colvar == '1' ? '<span class="label label-danger">'+i18n.t('yes')+'</span>' :
     (colvar === '0' ? '<span class="label label-success">'+i18n.t('no')+'</span>' : colvar)
     col.html(colvar)
