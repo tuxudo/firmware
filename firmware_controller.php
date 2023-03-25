@@ -267,7 +267,25 @@ class Firmware_controller extends Module_controller
             jsonView($firmware_process->process($data));
         }
     }
-    
+
+    /**
+     * Returns cached YAML file
+     *
+     * @return cached yaml file
+     * @author tuxudo
+     **/
+    public function get_cached_yaml()
+    {
+        // Retrieve cached YAML from database
+        $yaml_result = munkireport\models\Cache::select('value')
+                        ->where('module', 'firmware')
+                        ->where('property', 'yaml')
+                        ->value('value');
+
+        header('Content-Type: text/plain');
+        print_r($yaml_result);
+    }
+
     /**
      * Reprocess serial number
      *
@@ -340,7 +358,7 @@ class Firmware_controller extends Module_controller
      **/
     public function get_data($serial_number = '')
     {
-        $firmware = new Firmware_model($serial_number);        
+        $firmware = new Firmware_model($serial_number);
         jsonView($firmware->rs);
     }
 } // End class Firmware_controller
