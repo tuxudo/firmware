@@ -1,7 +1,7 @@
 <?php $this->view('partials/head'); ?>
 
-<div class="container">
-    <div class="row"><span id="firmware_pull_all"></span></div>
+<div class="container-fluid">
+    <div class="row pt-4"><span id="firmware_pull_all"></span></div>
     <div class="col-lg-5">
         <div id="GetAllFirmware-Progress" class="progress hide">
             <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">

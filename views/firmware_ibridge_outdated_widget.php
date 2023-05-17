@@ -1,15 +1,14 @@
 <div class="col-md-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-frown-o"></i>
-                <span data-i18n="firmware.ibridge_outdated"></span>
-                <list-link data-url="/show/listing/firmware/firmware"></list-link>
-            </h3>
+    <div class="card">
+        <div class="card-heading">
+            <i class="fa fa-frown-o"></i>
+            <span data-i18n="firmware.ibridge_outdated"></span>
+            <a href="/show/listing/firmware/firmware" class="pull-right"><i class="fa fa-list"></i></a>
         </div>
-        <div id="firmware-ibridge_outdated-panel" class="panel-body text-center">
+        <div id="firmware-ibridge_outdated-card" class="card-body text-center">
             <svg id="firmware-ibridge_outdated-plot" style="width:100%; height: 300px"></svg>
         </div>
-    </div><!-- /panel -->
+    </div><!-- /card -->
 </div><!-- /col -->
 
 <script>
