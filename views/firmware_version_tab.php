@@ -89,9 +89,8 @@ $(document).on('appReady', function(e, lang) {
 			}
 			if (data.ibridge_latest !== null){
 				$('#firmware-ibridge_latest-view').removeClass('hide');
-				$('#firmware-ibridge_latest').text(data.ibridge_latest);
 				$('#firmware-ibridge_outdated-view').removeClass('hide');
-				$('#firmware-ibridge_outdated').text(data.ibridge_outdated);
+				$('#firmware-ibridge_latest').text(data.ibridge_latest);
 			}
 		}
 	});
