@@ -1,6 +1,6 @@
 <div class="col-md-4">
-    <div class="card card-default">
-        <div class="card-heading">
+    <div class="card" id="firmware-boot_rom_outdated-widget">
+        <div class="card-header" data-container="card-body">
             <i class="fa fa-frown-o"></i>
             <span data-i18n="firmware.boot_rom_outdated"></span>
             <a href="/show/listing/firmware/firmware" class="pull-right"><i class="fa fa-list"></i></a>
