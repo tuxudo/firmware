@@ -21,7 +21,7 @@ class Firmware_controller extends Module_controller
     {
         echo "You've loaded the firmware module!";
     }
-    
+
     public function admin()
     {
         $obj = new View();
@@ -89,7 +89,7 @@ class Firmware_controller extends Module_controller
 
         jsonView($out);
     }
-    
+
     /**
      * Force data pull from firmware GitHub
      *
@@ -160,11 +160,11 @@ class Firmware_controller extends Module_controller
 
         // Get the current time
         $current_time = time();
-        
+
         // Save new cache data to the cache table
         munkireport\models\Cache::updateOrCreate(
             [
-                'module' => 'firmware', 
+                'module' => 'firmware',
                 'property' => 'yaml',
             ],[
                 'value' => $yaml_result,
@@ -173,7 +173,7 @@ class Firmware_controller extends Module_controller
         );
         munkireport\models\Cache::updateOrCreate(
             [
-                'module' => 'firmware', 
+                'module' => 'firmware',
                 'property' => 'source',
             ],[
                 'value' => $cache_source,
@@ -182,14 +182,14 @@ class Firmware_controller extends Module_controller
         );
         munkireport\models\Cache::updateOrCreate(
             [
-                'module' => 'firmware', 
+                'module' => 'firmware',
                 'property' => 'last_update ',
             ],[
                 'value' => $current_time,
                 'timestamp' => $current_time,
             ]
         );
-        
+
         // Send result
         $out = array("status"=>$return_status,"source"=>$cache_source,"timestamp"=>$current_time);
         jsonView($out);
@@ -293,7 +293,7 @@ class Firmware_controller extends Module_controller
      * @author tuxudo
      **/
     public function recheck_firmware($serial)
-    {   
+    {
         // Remove non-serial number characters
         $serial = preg_replace("/[^A-Za-z0-9_\-]]/", '', $serial);
 
@@ -323,7 +323,7 @@ class Firmware_controller extends Module_controller
         if (array_key_exists(0, $ibridge_data) && ! is_null($ibridge_data[0]->ibridge_version) && !strpos($ibridge_data[0]->ibridge_version, ',') === false ){
             $data["ibridge_version"] = explode (",", $ibridge_data[0]->ibridge_version)[0];
             $data["hardware_model"] = $ibridge_data[0]->hardware_model;
-        }   
+        }
 
         $machine->process($data);
 

@@ -5,7 +5,7 @@ import subprocess
 import sys
 import plistlib
 import platform
-
+import time
 
 def get_system_info():
     '''Uses system profiler to get system info for this machine.'''
@@ -45,7 +45,7 @@ def get_remotectl_data():
             # Break so that we don't get data on connected iOS devices, there is another module dedicated to that
             break
     return out
-    
+
 def flatten_info(obj):
     '''Un-nest system info, return array with objects with relevant keys'''
     out = {}
@@ -74,7 +74,7 @@ def merge_two_dicts(x, y):
 
 def main():
     """Main"""
-    
+
     # Get results
     result = dict()
     system_info = get_system_info()
@@ -86,9 +86,26 @@ def main():
     else:
         result = flatten_info(system_info)
 
-    # Write firmware results to cache
     cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))
     output_plist = os.path.join(cachedir, 'firmware.plist')
+
+    # Check if we need to do weekly re-process of firmware
+    if os.path.isfile(output_plist):
+        with open(output_plist, 'rb') as infile:
+            cache_plist = plistlib.load(infile)
+        infile.close()
+
+        # Check if we need to add, update, or keep the timestamp of the last run
+        if "timestamp" not in cache_plist:
+            result["timestamp"] = str(int(time.time()))
+        elif "timestamp" in cache_plist and int(time.time()) > int(cache_plist['timestamp'])+604800:
+            result["timestamp"] = str(int(time.time()))
+        else:
+            result["timestamp"] = str(cache_plist['timestamp'])
+    else:
+        result["timestamp"] = str(int(time.time()))
+
+    # Write firmware results to cache
     try:
         plistlib.writePlist(result, output_plist)
     except:

@@ -39,28 +39,28 @@ $(document).on('appReady', function(e, lang) {
 
         $('#Firmware-Status').html(firmrows+'</tbody></table>') // Close table framework and assign to HTML ID
     });
-    
-    // Generate pull all button and header    
+
+    // Generate pull all button and header
     $('#firmware_pull_all').html('<h3 class="col-lg-6" >&nbsp;&nbsp;'+i18n.t('firmware.title_admin')+'&nbsp;&nbsp;<button id="GetAllFirmware" class="btn btn-default btn-xs">'+i18n.t("firmware.pull_in_all")+'</button>&nbsp;&nbsp;<button id="UpdateFirmware" class="btn btn-default btn-xs">'+i18n.t("firmware.update_cache_file")+'</button>&nbsp;<i id="GetAllFirmwareProgess" class="hide fa fa-cog fa-spin" aria-hidden="true"></i></h3>');
-    
+
     // Update cache file function
     $('#UpdateFirmware').click(function (e) {
         // Disable buttons
         $('#GetAllFirmware').addClass('disabled');
         $('#GetAllFirmwareProgess').removeClass('hide');
         $('#UpdateFirmware').addClass('disabled');
-        
+
         $.getJSON(appUrl + '/module/firmware/update_cached_firmware_data', function (processdata) {
             if(processdata['status'] == 1){
                 var date = new Date(processdata['timestamp'] * 1000);
                 $('#firm_time').html('<span title="'+moment(date).fromNow()+'">'+moment(date).format('llll')+'</span>')
-                $('#firm_source').html('<a href="https://github.com/munkireport/firmware/blob/master/firmware_data.yml" target="_blank">'+i18n.t('firmware.update_from_github')+'</a>')
+                $('#firm_source').html('<a href="https://github.com/hoakleyelc/updates/" target="_blank">'+i18n.t('firmware.update_from_github')+'</a>')
                 $('#GetAllFirmware').removeClass('disabled');
                 $('#UpdateFirmware').removeClass('disabled');
                 $('#GetAllFirmwareProgess').addClass('hide');
-                
+
             } else if(processdata['status'] == 2){
-                
+
                 var date = new Date(processdata['timestamp'] * 1000);
                 $('#firm_time').html('<span title="'+moment(date).fromNow()+'">'+moment(date).format('llll')+'</span>')
                 $('#firm_source').html(i18n.t('firmware.update_from_local'))
@@ -166,7 +166,7 @@ window.onbeforeunload = function() {
         return;
     }
 };
-    
+
 </script>
 
 <?php $this->view('partials/foot'); ?>

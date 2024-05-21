@@ -4,7 +4,7 @@ use CFPropertyList\CFPropertyList;
 use munkireport\lib\Request;
 
 class Firmware_model extends \Model
-{    
+{
     public function __construct($serial = '')
     {
         parent::__construct('id', 'firmware'); // Primary key, tablename
@@ -112,7 +112,7 @@ class Firmware_model extends \Model
             // Save new cache data to the cache table
             munkireport\models\Cache::updateOrCreate(
                 [
-                    'module' => 'firmware', 
+                    'module' => 'firmware',
                     'property' => 'yaml',
                 ],[
                     'value' => $yaml_result,
@@ -121,7 +121,7 @@ class Firmware_model extends \Model
             );
             munkireport\models\Cache::updateOrCreate(
                 [
-                    'module' => 'firmware', 
+                    'module' => 'firmware',
                     'property' => 'source',
                 ],[
                     'value' => $cache_source,
@@ -130,7 +130,7 @@ class Firmware_model extends \Model
             );
             munkireport\models\Cache::updateOrCreate(
                 [
-                    'module' => 'firmware', 
+                    'module' => 'firmware',
                     'property' => 'last_update',
                 ],[
                     'value' => $current_time,
@@ -153,7 +153,7 @@ class Firmware_model extends \Model
         // Check if we are processing a plist or not
         if(!is_array($data)){
             $parser = new CFPropertyList();
-            $parser->parse($data);     
+            $parser->parse($data);
             $plist = $parser->toArray();
 
             $this->rs['machine_model'] = $plist['machine_model'];
@@ -217,7 +217,7 @@ class Firmware_model extends \Model
 
         // Save firmware datas
         $this->save();
-        
+
         // Return something if reprocessing
         if(is_array($data)){
             return true;

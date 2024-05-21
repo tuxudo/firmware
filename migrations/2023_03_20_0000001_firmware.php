@@ -31,7 +31,7 @@ class Firmware extends Migration
             $table->index('ibridge_outdated');
         });
     }
-    
+
     public function down()
     {
         $capsule = new Capsule();
