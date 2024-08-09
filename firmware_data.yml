@@ -1,89 +1,89 @@
 'Macmini9,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookAir10,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookPro17,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookPro18,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookPro18,2':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookPro18,3':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookPro18,4':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'iMac21,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'iMac21,2':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac13,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac13,2':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,1':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,2':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,3':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,5':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,6':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,7':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,8':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,9':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,10':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,12':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,13':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,14':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac14,15':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,3':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,4':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,5':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,6':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,7':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,8':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,9':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,10':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'Mac15,11':
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 other:
-    boot_rom_latest: 10151.121.1
+    boot_rom_latest: 10151.140.19
 'MacBookPro15,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookPro15,2':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookPro15,3':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookPro15,4':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookPro16,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookPro16,2':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookPro6,1':
     boot_rom_latest: 99.0.0.0.0
 'MacBookPro6,2':
@@ -123,11 +123,11 @@ other:
 'MacBookPro13,3':
     boot_rom_latest: 529.120.1.0.0
 'MacBookPro14,1':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'MacBookPro14,2':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'MacBookPro14,3':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'MacBook6,1':
     boot_rom_latest: 209.0.0.0.0
 'MacBook7,1':
@@ -137,7 +137,7 @@ other:
 'MacBook9,1':
     boot_rom_latest: 529.120.1.0.0
 'MacBook10,1':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'MacBookAir3,1':
     boot_rom_latest: 110.0.0.0.0
 'MacBookAir3,2':
@@ -159,14 +159,14 @@ other:
 'MacBookAir7,2':
     boot_rom_latest: 489.0.0.0.0
 'MacBookAir8,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookAir8,2':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacBookAir9,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'MacPro4,1':
     boot_rom_latest: 144.0.0.0.0
 'MacPro5,1':
@@ -174,11 +174,11 @@ other:
 'MacPro6,1':
     boot_rom_latest: 481.0.0.0.0
 'MacPro7,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'Macmini8,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'Macmini4,1':
     boot_rom_latest: 76.0.0.0.0
 'Macmini5,1':
@@ -226,21 +226,21 @@ other:
 'iMac17,1':
     boot_rom_latest: 529.120.1.0.0
 'iMac18,1':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'iMac18,2':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'iMac18,3':
-    boot_rom_latest: 529.120.1.0.0
+    boot_rom_latest: 529.140.2.0.0
 'iMac19,1':
     boot_rom_latest: 2022.100.22.0.0
 'iMac19,2':
     boot_rom_latest: 2022.100.22.0.0
 'iMac20,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'iMac20,2':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0
 'iMacPro1,1':
-    boot_rom_latest: 2022.100.22.0.0
-    ibridge_latest: 21.16.5077.0.0
+    boot_rom_latest: 2022.140.5.0.0
+    ibridge_latest: 21.16.6074.0.0

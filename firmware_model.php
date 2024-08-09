@@ -79,7 +79,6 @@ class Firmware_model extends \Model
 
                 // Merge plists into single yaml file
                 $yaml_result = array();
-                // foreach ([$apple_silicon_result] as $firmware_plist) {
                 foreach ([$apple_silicon_result, $macbook_pro_result, $macbook_result, $macbook_air_result, $mac_pro_result, $mac_mini_result, $imac_result, $imac_pro_result] as $firmware_plist) {
 
                     // Turn the plists into objects
@@ -209,6 +208,37 @@ class Firmware_model extends \Model
                 }
             }
 
+        // Else check if we're an Apple Silion Mac and the machine model
+        // is not in the array, use the "other" key if it exists
+        } else if (preg_match('/^Mac[0-9]/', $this->rs['machine_model']) && array_key_exists("other", $yaml_data)) {
+
+            // Process bootrom_latest
+            if (array_key_exists('boot_rom_latest', $yaml_data["other"])) {
+                $this->rs['boot_rom_latest'] = $yaml_data["other"]['boot_rom_latest'];
+
+                // Compare to make sure we're running the latest version
+                if(! is_null($this->rs['boot_rom_version']) && version_compare($this->rs['boot_rom_version'], $this->rs['boot_rom_latest'], '>=')) {
+                    $this->rs['boot_rom_outdated'] = 0;
+                } else if (is_null($this->rs['boot_rom_version'])){
+                    $this->rs['boot_rom_outdated'] = null;
+                } else {
+                    $this->rs['boot_rom_outdated'] = 1;
+                }
+            }
+
+            // Process ibridge_latest
+            if (array_key_exists('ibridge_latest', $yaml_data["other"])) {
+                $this->rs['ibridge_latest'] = $yaml_data["other"]['ibridge_latest'];
+
+                // Compare to make sure we're running the latest version
+                if(! is_null($this->rs['ibridge_version']) && version_compare($this->rs['ibridge_version'], $this->rs['ibridge_latest'], '>=')) {
+                    $this->rs['ibridge_outdated'] = 0;
+                } else if (is_null($this->rs['ibridge_version'])){
+                    $this->rs['ibridge_outdated'] = null;
+                } else {
+                    $this->rs['ibridge_outdated'] = 1;
+                }
+            }
 
         } else {
             // Error out if we cannot locate that machine.

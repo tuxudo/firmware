@@ -37,11 +37,11 @@ class Firmware_controller extends Module_controller
     public function get_boot_rom_outdated()
     {
         $sql = "SELECT COUNT(CASE WHEN boot_rom_outdated IS NOT NULL THEN 1 END) AS count, boot_rom_outdated
-                FROM firmware
-                LEFT JOIN reportdata USING (serial_number)
-                ".get_machine_group_filter()."
-                GROUP BY boot_rom_outdated
-                ORDER BY count DESC";
+                    FROM firmware
+                    LEFT JOIN reportdata USING (serial_number)
+                    ".get_machine_group_filter()."
+                    GROUP BY boot_rom_outdated
+                    ORDER BY count DESC";
 
         $out = [];
         $queryobj = new Firmware_model;
@@ -68,11 +68,11 @@ class Firmware_controller extends Module_controller
     public function get_ibridge_outdated()
     {
         $sql = "SELECT COUNT(CASE WHEN ibridge_outdated IS NOT NULL THEN 1 END) AS count, ibridge_outdated
-                FROM firmware
-                LEFT JOIN reportdata USING (serial_number)
-                ".get_machine_group_filter()."
-                GROUP BY ibridge_outdated
-                ORDER BY count DESC";
+                    FROM firmware
+                    LEFT JOIN reportdata USING (serial_number)
+                    ".get_machine_group_filter()."
+                    GROUP BY ibridge_outdated
+                    ORDER BY count DESC";
 
         $out = [];
         $queryobj = new Firmware_model;
@@ -128,7 +128,6 @@ class Firmware_controller extends Module_controller
 
             // Merge plists into single yaml file
             $yaml_result = array();
-            // foreach ([$apple_silicon_result] as $firmware_plist) {
             foreach ([$apple_silicon_result, $macbook_pro_result, $macbook_result, $macbook_air_result, $mac_pro_result, $mac_mini_result, $imac_result, $imac_pro_result] as $firmware_plist) {
 
                 // Turn the plists into objects
@@ -301,7 +300,7 @@ class Firmware_controller extends Module_controller
         $machine = new Firmware_model();
         $sql = "SELECT machine.machine_model, machine.boot_rom_version
                     FROM machine
-                        WHERE serial_number = '".$serial."'";
+                    WHERE serial_number = '".$serial."'";
 
         $data = [];
         $data["machine_model"] = $machine->query($sql)[0]->machine_model;
