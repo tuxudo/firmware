@@ -24,6 +24,15 @@ class Firmware_controller extends Module_controller
 
     public function admin()
     {
+        // Check if the user is authorized and has admin role
+        if (! $this->authorized()) {
+            die('Authenticate first.');
+        }
+
+        if (! $this->authorized('global')) {
+            die('You need to be admin');
+        }
+
         $obj = new View();
         $obj->view('firmware_admin', [], $this->module_path.'/views/');
     }
@@ -98,6 +107,17 @@ class Firmware_controller extends Module_controller
      **/
     public function update_cached_firmware_data()
     {
+        // Check if the user is authorized and has admin role
+        if (! $this->authorized()) {
+            jsonView(['error' => 'Authenticate first.']);
+            return;
+        }
+
+        if (! $this->authorized('global')) {
+            jsonView(['error' => 'You need to be admin']);
+            return;
+        }
+
         $queryobj = new Firmware_model();
 
         // Get YAML from Eclectic Light Company (https://github.com/hoakleyelc/updates) GitHub repo
@@ -202,6 +222,17 @@ class Firmware_controller extends Module_controller
      **/
     public function pull_all_firmware_data($incoming_serial = '')
     {
+        // Check if the user is authorized and has admin role
+        if (! $this->authorized()) {
+            jsonView(['error' => 'Authenticate first.']);
+            return;
+        }
+
+        if (! $this->authorized('global')) {
+            jsonView(['error' => 'You need to be admin']);
+            return;
+        }
+
         // Check if we are returning a list of all serials or processing a serial
         // Returns either a list of all serial numbers in MunkiReport OR
         // a JSON of what serial number was just ran with the status of the run
@@ -338,6 +369,17 @@ class Firmware_controller extends Module_controller
      **/
     public function get_admin_data()
     {
+        // Check if the user is authorized and has admin role
+        if (! $this->authorized()) {
+            jsonView(['error' => 'Authenticate first.']);
+            return;
+        }
+
+        if (! $this->authorized('global')) {
+            jsonView(['error' => 'You need to be admin']);
+            return;
+        }
+
         $source = munkireport\models\Cache::select('value')
                         ->where('module', 'firmware')
                         ->where('property', 'source')
