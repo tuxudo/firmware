@@ -130,25 +130,30 @@ class Firmware_controller extends Module_controller
             $yaml_result = array();
             foreach ([$apple_silicon_result, $macbook_pro_result, $macbook_result, $macbook_air_result, $mac_pro_result, $mac_mini_result, $imac_result, $imac_pro_result] as $firmware_plist) {
 
-                // Turn the plists into objects
-                $parser = new CFPropertyList();
-                $parser->parse($firmware_plist, CFPropertyList::FORMAT_XML);
-                $plist = $parser->toArray();
+                try {
+                    // Turn the plists into objects
+                    $parser = new CFPropertyList();
+                    $parser->parse($firmware_plist, CFPropertyList::FORMAT_XML);
+                    $plist = $parser->toArray();
 
-                // Process each Mac in the firmware plists
-                foreach($plist as $mac_model){
-                    $firmware_array = array();
+                    // Process each Mac in the firmware plists
+                    foreach($plist as $mac_model){
+                        $firmware_array = array();
 
-                    if(array_key_exists("EFIversion", $mac_model)) {
-                        $firmware_array['boot_rom_latest'] = $mac_model["EFIversion"];
+                        if(array_key_exists("EFIversion", $mac_model)) {
+                            $firmware_array['boot_rom_latest'] = $mac_model["EFIversion"];
+                        }
+                        if(array_key_exists("iBootversion", $mac_model)) {
+                            $firmware_array['boot_rom_latest'] = $mac_model["iBootversion"];
+                        }
+                        if(array_key_exists("iBridge", $mac_model)) {
+                            $firmware_array['ibridge_latest'] = $mac_model["iBridge"];
+                        }
+                        $yaml_result[$mac_model["MacModel"]] = $firmware_array;
                     }
-                    if(array_key_exists("iBootversion", $mac_model)) {
-                        $firmware_array['boot_rom_latest'] = $mac_model["iBootversion"];
-                    }
-                    if(array_key_exists("iBridge", $mac_model)) {
-                        $firmware_array['ibridge_latest'] = $mac_model["iBridge"];
-                    }
-                    $yaml_result[$mac_model["MacModel"]] = $firmware_array;
+                } catch (Exception $e) {
+                    // Error reading firmware plist from GitHub
+                    // print_r("Error reading firmware plist from GitHub");
                 }
             }
 

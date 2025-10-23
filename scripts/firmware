@@ -80,8 +80,8 @@ def main():
     system_info = get_system_info()
 
     # Check OS version and skip if too old
-    # Needs at least macOS Sierra (Darwin 16)   
-    if getOsVersion() > 15:
+    # Needs at least macOS High Sierra (Darwin 17)   
+    if getOsVersion() > 16:
         result = merge_two_dicts(flatten_info(system_info), get_remotectl_data())
     else:
         result = flatten_info(system_info)
