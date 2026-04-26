@@ -183,7 +183,8 @@ class Firmware_model extends \Model
         }
 
         // Process machine_model for bootrom_latest and ibridge_latest
-        if (array_key_exists($this->rs['machine_model'], $yaml_data)) {
+        // but only if we don't have a mBoot firmware version
+        if (array_key_exists($this->rs['machine_model'], $yaml_data) && ! str_starts_with($this->rs['boot_rom_version'], 'mBoot')) {
 
             // Process bootrom_latest
             if (array_key_exists('boot_rom_latest', $yaml_data[$this->rs['machine_model']])) {
@@ -202,6 +203,41 @@ class Firmware_model extends \Model
             // Process ibridge_latest
             if (array_key_exists('ibridge_latest', $yaml_data[$this->rs['machine_model']])) {
                 $this->rs['ibridge_latest'] = $yaml_data[$this->rs['machine_model']]['ibridge_latest'];
+
+                // Compare to make sure we're running the latest version
+                if(! is_null($this->rs['ibridge_version']) && version_compare($this->rs['ibridge_version'], $this->rs['ibridge_latest'], '>=')) {
+                    $this->rs['ibridge_outdated'] = 0;
+                } else if (is_null($this->rs['ibridge_version'])){
+                    $this->rs['ibridge_outdated'] = null;
+                } else {
+                    $this->rs['ibridge_outdated'] = 1;
+                }
+            }
+
+        // Else check if we're an Apple Silion Mac and the machine model
+        // is not in the array, use the "mBoot1" key if we have an mBoot-1 version
+        } else if (preg_match('/^Mac[0-9]/', $this->rs['machine_model']) && array_key_exists("mBoot1", $yaml_data) && str_starts_with($this->rs['boot_rom_version'], 'mBoot-1')) {
+
+            // Remove the "mBoot-" from the bootrom version
+            $this->rs['boot_rom_version'] = str_replace("mBoot-","",$this->rs['boot_rom_version']);
+
+            // Process bootrom_latest, after removing the "mBoot-"
+            if (array_key_exists('boot_rom_latest', $yaml_data["mBoot1"])) {
+                $this->rs['boot_rom_latest'] = $yaml_data["mBoot1"]['boot_rom_latest'];
+
+                // Compare to make sure we're running the latest version
+                if(! is_null($this->rs['boot_rom_version']) && version_compare($this->rs['boot_rom_version'], $this->rs['boot_rom_latest'], '>=')) {
+                    $this->rs['boot_rom_outdated'] = 0;
+                } else if (is_null($this->rs['boot_rom_version'])){
+                    $this->rs['boot_rom_outdated'] = null;
+                } else {
+                    $this->rs['boot_rom_outdated'] = 1;
+                }
+            }
+
+            // Process ibridge_latest
+            if (array_key_exists('ibridge_latest', $yaml_data["mBoot1"])) {
+                $this->rs['ibridge_latest'] = $yaml_data["mBoot1"]['ibridge_latest'];
 
                 // Compare to make sure we're running the latest version
                 if(! is_null($this->rs['ibridge_version']) && version_compare($this->rs['ibridge_version'], $this->rs['ibridge_latest'], '>=')) {
